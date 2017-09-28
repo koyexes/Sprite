@@ -1,7 +1,6 @@
 require "Sprite/version"
 
 module Sprite
-  class Application
     def call(env)
       @req = Rack::Request.new env
       path = @req.path_info
@@ -9,7 +8,7 @@ module Sprite
       return [500, {}, []] if path == "/favicon.ico"
       controller, action = get_controller_and_action_for(path, request_method)
       response = controller.new.send(action)
-      [200, {"Content-Type" => "text/html"}, [response]]
+      [200, {"Content-Type" => "text/html"}, ["hello"]]
     end
 
     def get_controller_and_action_for(path, verb)
@@ -19,5 +18,4 @@ module Sprite
       action = action.nil? ? verb : "#{verb}_#{action}"
       [controller, action]
     end
-  end
 end
