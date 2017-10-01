@@ -1,4 +1,6 @@
 require 'Sprite/version'
+require 'Sprite/controller'
+require 'Sprite/utility'
 
 module Sprite
   def call(env)
@@ -15,7 +17,7 @@ module Sprite
     _, controller, action, _others = path.split('/', 4)
     require "#{controller.downcase}_controller.rb"
     controller = Object.const_get(controller.capitalize! + 'Controller')
-    action = action.nil? ? verb : "#{verb}_#{action}"
+    action = action.nil? ? 'index' : action.to_s
     [controller, action]
   end
 end
