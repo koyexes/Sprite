@@ -1,6 +1,7 @@
 require 'Sprite/version'
 require 'Sprite/controller'
 require 'Sprite/utility'
+require 'Sprite/dependencies'
 
 module Sprite
   class Application
