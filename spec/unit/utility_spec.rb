@@ -43,17 +43,17 @@ RSpec.describe 'Utility Methods' do
   context '#camelize' do
     context 'person_controller' do
       it {
-        expect('person_controller'.camelize).to eq 'PersonController'
+        expect('person_controller'.to_camel_case).to eq 'PersonController'
       }
     end
     context 'person__todo_app' do
       it {
-        expect('person__todo_app'.camelize).to eq 'PersonTodoApp'
+        expect('person__todo_app'.to_camel_case).to eq 'PersonTodoApp'
       }
     end
     context 'person' do
       it {
-        expect('person'.camelize).to eq 'Person'
+        expect('person'.to_camel_case).to eq 'Person'
       }
     end
   end

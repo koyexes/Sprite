@@ -8,7 +8,7 @@ class String
     self
   end
 
-  def camelize
+  def to_camel_case
     return self if self !~ /_/ && self =~ /[A-Z]+.*/
     split('_').map(&:capitalize).join
   end
