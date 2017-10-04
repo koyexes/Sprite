@@ -11,9 +11,10 @@ module Sprite
       method = @req.request_method.downcase
       return [303, { 'Location' => '/users/about' }, []] if path == '/'
       return [500, {}, []] if path == '/favicon.ico'
-      controller, action = get_controller_and_action_for(path, method)
-      response = controller.new.send(action)
-      [200, { 'Content-Type' => 'text/html' }, [response]]
+      controller_class, action = get_controller_and_action_for(path, method)
+      controller = controller_class.new(@req)
+      controller.send(action)
+      get_response(controller, action)
     end
 
     def get_controller_and_action_for(path, method)
@@ -26,6 +27,12 @@ module Sprite
 
     def get_action(method)
       { 'post' => :create, 'get' => :index }[method].to_s
+    end
+
+    def get_response(controller, action)
+      return controller.get_response if controller.get_response
+      controller.render(action)
+      controller.get_response
     end
   end
 end
