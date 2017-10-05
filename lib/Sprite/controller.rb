@@ -37,5 +37,16 @@ module Sprite
     def controller_name
       self.class.to_s.gsub(/Controller$/, '').to_snake_case
     end
+
+    def dispatch(action)
+      send(action)
+      return get_response if get_response
+      render(action)
+      get_response
+    end
+
+    def self.action(action_name)
+      ->(env) { new(Rack::Request.new(env)).dispatch(action_name) }
+    end
   end
 end
