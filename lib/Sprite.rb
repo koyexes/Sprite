@@ -3,6 +3,7 @@ require 'Sprite/controller'
 require 'Sprite/utility'
 require 'Sprite/dependencies'
 require 'Sprite/routing'
+require 'Sprite/mapper'
 
 module Sprite
   class Application

@@ -37,4 +37,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'rack', '~> 2.0', '>= 2.0.3'
   spec.add_runtime_dependency 'erubis'
+  spec.add_runtime_dependency 'sqlite3'
 end
